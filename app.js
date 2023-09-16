@@ -26,7 +26,6 @@ if(!(city || availJobs))
     return res.status(404).send("information not found")
 
 const cityInformation = {jobs: availJobs, cityInfo: city}
-console.log(cityInformation)
 res.status(200).json(cityInformation)
 return res.status(200).end()
 
@@ -36,12 +35,12 @@ module.exports = app
 
 
 
-async function cityData(req){
+function cityData(req){
     var cityInfo = getCityInfo()
-    return cityInfo = cityInfo
+    return cityInfo 
 }
 
-async function jobsData(req){
+function jobsData(req){
     var jobsInfo = getJobs()
-    return jobsInfo =jobsInfo
+    return jobsInfo 
 }
