@@ -23,10 +23,11 @@ const city = cityData()
 const availJobs = jobsData()
 
 if(!(city || availJobs)) 
-    return res.status(404).end()
+    return res.status(404).send("information not found")
 
 const cityInformation = {jobs: availJobs, cityInfo: city}
-res.json(cityInformation)
+console.log(cityInformation)
+res.status(200).json(cityInformation)
 return res.status(200).end()
 
 })
