@@ -19,12 +19,15 @@ app.get('/api/city/:city', (req, res) => {
 // If no city info or jobs are found,
 // the endpoint should return a 404 status
 
-
 const city = cityData()
 const availJobs = jobsData()
 
+if(!(city & availJobs)) 
+    return res.status(404).end()
+
 const cityInformation = {cityInfo: city, jobs: availJobs}
 res.json(cityInformation)
+
 
 })
  
