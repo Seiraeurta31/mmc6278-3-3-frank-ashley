@@ -22,12 +22,12 @@ app.get('/api/city/:city', (req, res) => {
 const city = cityData()
 const availJobs = jobsData()
 
-if(!(city & availJobs)) 
+if(!(city || availJobs)) 
     return res.status(404).end()
 
-const cityInformation = {cityInfo: city, jobs: availJobs}
+const cityInformation = {jobs: availJobs, cityInfo: city}
 res.json(cityInformation)
-
+return res.status(200).end()
 
 })
  
