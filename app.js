@@ -33,11 +33,11 @@ module.exports = app
 
 
 async function cityData(req){
-    const cityInfo = getCityInfo()
-    return cityInfo =JSON.stringify(cityInfo)
+    var cityInfo = getCityInfo()
+    return cityInfo = cityInfo
 }
 
 async function jobsData(req){
-    const jobsInfo = getJobs()
-    return jobsInfo =JSON.stringify(jobsInfo)
+    var jobsInfo = getJobs()
+    return jobsInfo =jobsInfo
 }
