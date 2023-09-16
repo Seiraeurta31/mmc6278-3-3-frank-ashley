@@ -31,7 +31,7 @@ async function getCityInfo(location) {
     if (!city) throw new Error('City not found')
     const scores = city?._embedded?.["city:urban_area"]?._embedded?.["ua:scores"]
     if (!scores) throw new Error('No scores for this city')
-    
+    console.log(scores)
     return scores
   } catch(err) {
     // console.log(err.data || err.message)

@@ -19,14 +19,25 @@ app.get('/api/city/:city', (req, res) => {
 // If no city info or jobs are found,
 // the endpoint should return a 404 status
 
-const {
-    cityInfo,
-    jobs
-} = req.query
 
+const city = cityData()
+const availJobs = jobsData()
 
-// const cityData = {cityInfo: getCityInfo(), jobs: getJobs()}
-//     res.json(cityData)
-}) 
+const cityInformation = {cityInfo: city, jobs: availJobs}
+res.json(cityInformation)
+
+})
  
 module.exports = app
+
+
+
+async function cityData(req){
+    const cityInfo = getCityInfo()
+    return cityInfo =JSON.stringify(cityInfo)
+}
+
+async function jobsData(req){
+    const jobsInfo = getJobs()
+    return jobsInfo =JSON.stringify(jobsInfo)
+}
