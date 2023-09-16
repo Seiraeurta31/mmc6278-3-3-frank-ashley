@@ -13,7 +13,7 @@ app.use(express.static ('public'))
 // TODO: declare the GET route /api/city/:city
 app
     .route('/api/city/:city')
-    .get((req, res) => {
+    .get(async (req, res) => {
 // This endpoint should call getCityInfo and getJobs and return
 // the result as JSON. 
 // The returned JSON object should have two keys:
@@ -23,28 +23,15 @@ app
 // the endpoint should return a 404 status
 
     var location = req.params.city
-    const city = getCityInfo(location)
-    const availJobs = getJobs(location)
-
-    if(!(city || availJobs)) 
+    const cityInfo = await getCityInfo(location)
+    const jobs =await getJobs(location)
+    
+    if(!(cityInfo || jobs)) 
         return res.status(404).send("information not found")
-
-    const cityInformation = {jobs: availJobs, cityInfo: city}
-    res.status(200).json(cityInformation)
-    return res.status(200).end()
+    const info = {cityInfo, jobs}
+    res.json(info)
 
 })
  
 module.exports = app
 
-
-
-// function cityData(){
-//     var cityInfo = getCityInfo()
-//     return cityInfo 
-// }
-
-// function jobsData(){
-//     var jobsInfo = getJobs()
-//     return jobsInfo 
-// }
